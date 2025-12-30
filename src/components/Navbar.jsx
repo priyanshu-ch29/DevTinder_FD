@@ -1,18 +1,24 @@
-import React from 'react'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
+    const navigate = useNavigate()
+    const user = useSelector((state) => state.user)
+    const pathname = window.location.pathname
     return (
         <div className="navbar bg-base-300 shadow-sm py-3">
             <div className="flex-1">
                 <a href='/' className="btn btn-ghost text-xl">DevTinder</a>
             </div>
-            <div className="flex gap-2">
+            {pathname !== '/login' && !user && <button className="btn btn-primary mr-8" onClick={() => navigate("/login")}>Login</button>}
+            {user && <div className="flex gap-2 items-center    ">
+                <p>Welcome {user.firstName}!</p>
                 <div className="dropdown dropdown-end mx-5">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
                             <img
-                                alt="Tailwind CSS Navbar component"
-                                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                alt="user photo"
+                                src={user.photo} />
                         </div>
                     </div>
                     <ul
@@ -28,7 +34,7 @@ const Navbar = () => {
                         <li><a>Logout</a></li>
                     </ul>
                 </div>
-            </div>
+            </div>}
         </div>
     )
 }
