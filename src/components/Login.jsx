@@ -23,12 +23,17 @@ const Login = () => {
             email: "",
             password: ""
         };
+        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
         if (!email.trim()) {
             newErrors.email = "Email is required";
             isValid = false
         }
         if (!password.trim()) {
             newErrors.password = "Password is required";
+            isValid = false
+        }
+        if (email && !regex.test(email)) {
+            newErrors.email = "Invalid email format";
             isValid = false
         }
         setError(newErrors);
@@ -46,7 +51,7 @@ const Login = () => {
             return navigate("/")
         } catch (error) {
             console.log("Login error", error.response.data.message)
-            setError((prev) => ({ ...prev, response: error.response.data.message }))
+            setError((prev) => ({ ...prev, response: error?.response?.data?.message }))
         }
     }
 

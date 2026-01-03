@@ -18,9 +18,9 @@ const Body = () => {
                 withCredentials: true
             })
             console.log("res", res)
-            dispatch(addUser(res.data.user))
+            dispatch(addUser(res?.data?.user))
         } catch (error) {
-            if (error.response.status === 401) {
+            if (error?.response?.status === 401) {
                 navigate("/login")
             }
             console.log("Error in fetching user", error)
