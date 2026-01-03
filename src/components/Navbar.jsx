@@ -25,7 +25,7 @@ const Navbar = () => {
     return (
         <div className="navbar bg-base-300 shadow-sm py-3">
             <div className="flex-1">
-                <Link to='/' className="btn btn-ghost text-xl">DevTinder</Link>
+                <Link to={user ? '/' : '/login'} className="btn btn-ghost text-xl">DevTinder</Link>
             </div>
             {pathname !== '/login' && !user && <button className="btn btn-primary mr-8" onClick={() => navigate("/login")}>Login</button>}
             {user && <div className="flex gap-2 items-center    ">
