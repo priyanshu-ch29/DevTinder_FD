@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
     const navigate = useNavigate()
@@ -8,7 +8,7 @@ const Navbar = () => {
     return (
         <div className="navbar bg-base-300 shadow-sm py-3">
             <div className="flex-1">
-                <a href='/' className="btn btn-ghost text-xl">DevTinder</a>
+                <Link to='/' className="btn btn-ghost text-xl">DevTinder</Link>
             </div>
             {pathname !== '/login' && !user && <button className="btn btn-primary mr-8" onClick={() => navigate("/login")}>Login</button>}
             {user && <div className="flex gap-2 items-center    ">
@@ -25,10 +25,10 @@ const Navbar = () => {
                         tabIndex="-1"
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                         <li>
-                            <a className="justify-between">
+                            <Link to="/profile" className="justify-between">
                                 Profile
                                 <span className="badge">New</span>
-                            </a>
+                            </Link>
                         </li>
                         <li><a>Settings</a></li>
                         <li><a>Logout</a></li>

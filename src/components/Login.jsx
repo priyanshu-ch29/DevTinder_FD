@@ -37,7 +37,7 @@ const Login = () => {
     const handleLogin = async () => {
         if (!handleError()) return
         try {
-            const res = await axios.post(`${BASE_API_URL}auth/login`, {
+            const res = await axios.post(`${BASE_API_URL}/auth/login`, {
                 email, password
             }, {
                 withCredentials: true
