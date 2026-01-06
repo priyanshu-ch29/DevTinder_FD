@@ -42,7 +42,7 @@ const Connections = () => {
     return (
         <div className='flex flex-col justify-center my-10'>
             <h1 className='text-center text-4xl font-semibold'>Connections</h1>
-            <div className="flex items-center justify-center my-10 ">
+            <div className="flex flex-col gap-10 items-center justify-center my-10 ">
                 {
                     connections.map((item) => {
                         return <div key={item?._id} className="flex items-center justify-start py-5 px-3 gap-10 rounded-xl bg-base-300 w-[45%]">
