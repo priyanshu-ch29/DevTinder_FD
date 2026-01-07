@@ -5,7 +5,6 @@ import { addUser } from "../store/userSlice";
 import { BASE_API_URL } from "../utils/constant";
 import UserCard from "./UserCard";
 const EditProfile = ({ user }) => {
-    console.log(user);
     const dispatch = useDispatch();
     const [firstName, setFirstName] = useState(user?.firstName);
     const [lastName, setLastName] = useState(user?.lastName);
@@ -93,8 +92,8 @@ const EditProfile = ({ user }) => {
         }
     };
     return (
-        <div className="min-h-screen flex justify-center items-center gap-10">
-            <div className="flex gap-10 items-center">
+        <div className="min-h-screen flex justify-center items-center gap-10 my-10 md:my-0">
+            <div className="flex flex-col md:flex-row gap-10 items-center">
                 <div className="card bg-base-300 w-80 shadow-sm">
                     <div className="card-body">
                         <h2 className="card-title justify-center">Edit Profile</h2>

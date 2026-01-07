@@ -59,11 +59,11 @@ const Requests = () => {
                 {
                     connectionsRequests.map((item) => {
                         const { photo, firstName, lastName, age, bio } = item?.fromUserId
-                        return <div key={item?._id} className="flex items-center justify-start py-5 px-3 gap-10 rounded-xl bg-base-300 w-[45%]">
+                        return <div key={item?._id} className="flex flex-col md:flex-row items-center justify-start py-5 px-3 gap-10 rounded-xl bg-base-300 md:w-[45%] w-[70%]">
                             <img src={photo} alt="photo" className="w-30 h-30 object-cover rounded-full" />
                             <div>
-                                <h1 className="font-semibold text-xl">{firstName} {lastName}{", "} {age}</h1>
-                                <p className="pt-4 text-sm text-gray-400">{bio}</p>
+                                <h1 className="font-semibold text-xl md:text-left text-center">{firstName} {lastName}{", "} {age}</h1>
+                                <p className="pt-4 text-sm text-gray-400 md:text-left text-center">{bio}</p>
                             </div>
                             <div>
                                 <div className="card-actions flex justify-center items-center">

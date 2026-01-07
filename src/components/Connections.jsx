@@ -45,11 +45,11 @@ const Connections = () => {
             <div className="flex flex-col gap-10 items-center justify-center my-10 ">
                 {
                     connections.map((item) => {
-                        return <div key={item?._id} className="flex items-center justify-start py-5 px-3 gap-10 rounded-xl bg-base-300 w-[45%]">
+                        return <div key={item?._id} className="flex flex-col md:flex-row items-center justify-start py-5 px-3 gap-10 rounded-xl bg-base-300 md:w-[45%] w-[70%]">
                             <img src={item?.photo} alt="photo" className="w-30 h-30 object-fill rounded-full" />
                             <div>
-                                <h1 className="font-semibold text-xl">{item?.firstName} {item?.lastName}{", "} {item.age}</h1>
-                                <p className="pt-4 text-sm text-gray-400">{item.bio}</p>
+                                <h1 className="font-semibold text-xl md:text-left text-center">{item?.firstName} {item?.lastName}{", "} {item.age}</h1>
+                                <p className="pt-4 text-sm text-gray-400 md:text-left text-center">{item.bio}</p>
                             </div>
                         </div>
                     })
