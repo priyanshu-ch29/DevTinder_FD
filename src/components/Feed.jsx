@@ -30,6 +30,14 @@ const Feed = () => {
         )
     }
 
+    if (feed.length === 0) {
+        return (
+            <div className='flex justify-center my-10'>
+                No profiles were found!
+            </div>
+        )
+    }
+
     return (
         <div className='flex justify-center my-10'>
             <UserCard user={feed[0]} />
