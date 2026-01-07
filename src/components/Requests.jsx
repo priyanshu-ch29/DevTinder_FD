@@ -23,6 +23,19 @@ const Requests = () => {
         fetchConnectionRequest()
     }, [])
 
+    const handleRequest = async (status, _id) => {
+        try {
+            const res = await axios.post(`${BASE_API_URL}/request/review/${status}/${_id}`, {}, {
+                withCredentials: true
+            })
+            const conn = connectionsRequests.filter(r => r._id !== _id)
+            setConnectionsRequests(conn)
+        } catch (error) {
+            console.log("Error in request", error.response.message)
+        }
+    }
+
+
     if (loading) {
         return (
             <div className=" flex justify-center my-10">
@@ -54,8 +67,8 @@ const Requests = () => {
                             </div>
                             <div>
                                 <div className="card-actions flex justify-center items-center">
-                                    <button className="btn btn-primary">Rejected</button>
-                                    <button className="btn btn-secondary">Accepted</button>
+                                    <button className="btn btn-primary" onClick={() => handleRequest("rejected", item?._id)}>Rejected</button>
+                                    <button className="btn btn-secondary" onClick={() => handleRequest("accepted", item?._id)}>Accepted</button>
                                 </div>
                             </div>
                         </div>
