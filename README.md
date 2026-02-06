@@ -1,16 +1,130 @@
-# React + Vite
+# DevTinder (Frontend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend for **DevTinder** — a Tinder-like developer networking app where you can:
 
-Currently, two official plugins are available:
+- browse a feed of developer profiles
+- mark profiles as **Interested** or **Ignored**
+- view **Connections**
+- review incoming **Connection Requests** (Accept / Reject)
+- manage your **Profile**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Built with **React (Vite)**, **Redux Toolkit**, **React Router**, **TailwindCSS**, and **daisyUI**.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- **React 19** + **Vite**
+- **React Router DOM**
+- **Redux Toolkit** + **React Redux**
+- **TailwindCSS** + **daisyUI**
+- **Axios** (cookie-based auth via `withCredentials: true`)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (LTS recommended)
+- A running backend server (see **Backend API requirements**)
+
+### Install
+
+```bash
+npm install
+```
+
+### Run (dev)
+
+```bash
+npm run dev
+```
+
+### Build
+
+```bash
+npm run build
+```
+
+### Preview production build
+
+```bash
+npm run preview
+```
+
+### Lint
+
+```bash
+npm run lint
+```
+
+---
+
+## Backend API Requirements
+
+This frontend expects a backend running at:
+
+- `http://localhost:5010` (configured in `src/utils/constant.js` as `BASE_API_URL`)
+
+Authentication is cookie-based:
+
+- All authenticated requests use `axios` with `withCredentials: true`
+- Your backend must enable CORS with credentials and allow the frontend origin.
+
+### API endpoints used by the UI
+
+- **Auth**
+  - `POST /auth/login`
+  - `POST /auth/signup`
+  - `POST /auth/logout`
+
+- **Profile**
+  - `GET /profile/view` (used on app load to restore session)
+  - `PATCH /profile/edit`
+
+- **Feed**
+  - `GET /user/view/feed`
+
+- **Connections**
+  - `GET /user/view/connection`
+
+- **Requests**
+  - `GET /user/request/recieved`
+
+- **Send / review requests**
+  - `POST /request/send/:status/:userId`
+    - statuses used: `interested`, `ignored`
+  - `POST /request/review/:status/:requestId`
+    - statuses used: `accepted`, `rejected`
+
+---
+
+## Routes (Frontend)
+
+Defined in `src/App.jsx`:
+
+- `/` - Feed
+- `/login` - Login / Signup
+- `/profile` - Edit profile
+- `/connections` - Connections list
+- `/requests` - Incoming connection requests
+
+---
+
+## State Management
+
+Redux store (`src/store/store.js`) contains:
+
+- `user` slice: logged-in user (or `null`)
+- `feed` slice: list of profiles for the feed
+
+---
+
+## Styling
+
+- Tailwind + daisyUI are enabled in `src/index.css`:
+  - `@import "tailwindcss";`
+  - `@plugin "daisyui";`
+
+---
